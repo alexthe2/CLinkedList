@@ -69,3 +69,6 @@ In the `main.c` a header is used:
 
 if you are copying the main.c and not including Visual Leak Detector, make sure to remove `#include "vld.h"`, if you are building in a non VisualC debugger, 
 like gcc you can also remove the entire fragment, though it will not be evaluated by the compiler
+
+# License
+You can use this code for free under the MIT License. Would be nice if you could refernece me though ;)
