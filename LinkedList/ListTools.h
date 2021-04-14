@@ -1,4 +1,5 @@
 /* Copyright (C) 2021 Alexander Procelewski - All Rights Reserved
+ * https://github.com/alexthe2/CLinkedList
  * You may use, distribute and modify this code under the
  * terms of the MIT license.
  */
