@@ -1,6 +1,6 @@
 # CLinkedList
 
-This is a very simple implementation of a double linked list in C.
+This is a very simple implementation of a double linked list in C. It allows for any datatypes to be stored. When sorting is necessary or comparisions in any way it is necessary that all the datatypes have the same type or are comparable by the same function.
 
 # Structs and functions
 
