@@ -35,7 +35,7 @@ struct ListNode {
 
 #pragma region Functions
 /// <summary>
-/// Create a list. If you want to use default elements: <b>int</b>, <b>float</b>, <b>double</b>, <b>char*</b> use the default Compare functions
+/// Create a list. If you want to use default elements: <b>int</b>, <b>float</b>, <b>double</b>, <b>char*</b> use the default Compare functions. <b>TC: O(1)</b>
 /// </summary>
 /// <param name="compare">The compare function which should be used to compare two elements</param>
 /// <param name="fc">The free function for the content which should be called for the cleanup</param>
@@ -43,34 +43,34 @@ struct ListNode {
 LList CreateList(Compare compare, FreeContent fc);
 
 /// <summary>
-/// Destroy the list and frees all it's nodes
+/// Destroy the list and frees all it's nodes. <b>TC: O(N)</b>
 /// </summary>
 /// <param name="list">The list</param>
 void DestroyList(LList list);
 
 /// <summary>
-/// Add an item to the beginning of the list
+/// Add an item to the beginning of the list. <b>TC: O(1)</b>
 /// </summary>
 /// <param name="list">The list</param>
 /// <param name="item">The item to be added</param>
 void AddItem(LList list, void* item);
 
 /// <summary>
-/// Add an item to the list which is sorted
+/// Add an item to the list which is sorted. <b>TC: O(N)</b>
 /// </summary>
 /// <param name="list">The list</param>
 /// <param name="item">The item to be added</param>
 void AddItemSorted(LList list, void* item);
 
 /// <summary>
-/// Remove the first occurrence with the given content
+/// Remove the first occurrence with the given content. <b>TC: O(N)</b>
 /// </summary>
 /// <param name="list">The list</param>
 /// <param name="item">The content to be removed</param>
 void RemoveItem(LList list, void* content);
 
 /// <summary>
-/// Get the element at i
+/// Get the element at i. <b>TC: O(N)</b>
 /// </summary>
 /// <param name="list">The list</param>
 /// <param name="i">The position</param>
@@ -78,21 +78,21 @@ void RemoveItem(LList list, void* content);
 void* PeekAt(LList list, int i);
 
 /// <summary>
-/// Get the size of the list. This function only works if inserting/removing has been called via the given functions
+/// Get the size of the list. This function only works if inserting/removing has been called via the given functions. <b>TC: O(1)</b>
 /// </summary>
 /// <param name="list">The list</param>
 /// <returns></returns>
 int Size(LList list);
 
 /// <summary>
-/// Call a function foreach element
+/// Call a function foreach element. <b>TC: O(N)</b>
 /// </summary>
 /// <param name="list">The list</param>
 /// <param name="lc">The function to be called</param>
 void CallForAll(LList list, ListCall lc);
 
 /// <summary>
-/// Call a function for the element at i and return the result
+/// Call a function for the element at i and return the result.<b>TC: O(N)</b>
 /// </summary>
 /// <param name="list">The list</param>
 /// <param name="lc">The function to be called</param>
@@ -101,7 +101,7 @@ void CallForAll(LList list, ListCall lc);
 void* CallForAt(LList list, ListCall lc, int i);
 
 /// <summary>
-/// Check whether the element is in the list
+/// Check whether the element is in the list.<b>TC: O(N)</b>
 /// </summary>
 /// <param name="list">The list</param>
 /// <param name="ctx">The element to check</param>
