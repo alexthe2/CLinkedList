@@ -92,6 +92,13 @@ int Size(LList list);
 void CallForAll(LList list, ListCall lc);
 
 /// <summary>
+/// Call a function foreach element. <b>TC: O(N)</b>
+/// </summary>
+/// <param name="list">The list</param>
+/// <param name="lc">The function to be called</param>
+void CallForAllBackwards(LList list, ListCall lc);
+
+/// <summary>
 /// Call a function for the element at i and return the result.<b>TC: O(N)</b>
 /// </summary>
 /// <param name="list">The list</param>
