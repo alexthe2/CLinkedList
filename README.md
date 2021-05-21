@@ -6,18 +6,19 @@ This is a very simple implementation of a double linked list in C. It allows for
 
 The Main Element is the `LList` and it's functions are:
 
-| Function      |      | Description                                  |
-| ------------- | ---- | -------------------------------------------- |
-| CreateList    |      | Creates a List                               |
-| DestroyList   |      | Frees the list                               |
-| AddItem       |      | Adds an Item                                 |
-| AddItemSorted |      | Adds a sorted Item                           |
-| RemoveItem    |      | Removes an Item                              |
-| PeekAt        |      | Returns the Content at the position i        |
-| Size          |      | Returns the size of the list                 |
-| CallForAll    |      | Calls a function foreach element of the list |
-| CallForAt     |      | Calls a function for the element at          |
-| ElementExists |      | Checks whether an element exists             |
+| Function            |      | Description                                  |
+| ------------------- | ---- | -------------------------------------------- |
+| CreateList          |      | Creates a List                               |
+| DestroyList         |      | Frees the list                               |
+| AddItem             |      | Adds an Item                                 |
+| AddItemSorted       |      | Adds a sorted Item                           |
+| RemoveItem          |      | Removes an Item                              |
+| PeekAt              |      | Returns the Content at the position i        |
+| Size                |      | Returns the size of the list                 |
+| CallForAll          |      | Calls a function foreach element of the list |
+| CallForAllBackwards |      | Same as CallForAll, just backwards           |
+| CallForAt           |      | Calls a function for the element at          |
+| ElementExists       |      | Checks whether an element exists             |
 
 # Predefined
 

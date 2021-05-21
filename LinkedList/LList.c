@@ -12,7 +12,7 @@ Node CreateNode(void* content) {
 	return node;
 }
 
-void FreeNode(FreeContent free_ctx,	Node node) {
+void FreeNode(FreeContent free_ctx, Node node) {
 	free_ctx(node->content);
 	free(node);
 }
@@ -29,7 +29,7 @@ Node AddNode(Node successor, Node node) {
 /* O(1) */
 void RemoveElement(FreeContent free_ctx, Node node) {
 	node->prev->next = node->next;
-	if(node->next != NULL) {
+	if (node->next != NULL) {
 		node->next->prev = node->prev;
 	}
 
@@ -39,7 +39,7 @@ void RemoveElement(FreeContent free_ctx, Node node) {
 /* ------------------ Public (accessible from outside) ------------------ */
 /* TC: O(1) */
 LList CreateList(Compare compare, FreeContent fc) {
-	LList list = (LList) SAFEMALLOC(sizeof(struct List));
+	LList list = (LList)SAFEMALLOC(sizeof(struct List));
 
 	list->compare_function = compare;
 	list->free_function = fc;
@@ -51,7 +51,7 @@ LList CreateList(Compare compare, FreeContent fc) {
 /* TC O(N) */
 void DestroyList(LList list) {
 	Node curr = list->head;
-	while(curr != NULL) {
+	while (curr != NULL) {
 		const Node next = curr->next;
 		FreeNode(list->free_function, curr);
 		curr = next;
@@ -71,9 +71,9 @@ void AddItem(LList list, void* item) {
 void AddItemSorted(LList list, void* item) {
 	Node node = CreateNode(item); /* O(1) */
 	list->count++;
-	
+
 	Node curr = list->head;
-	if(curr == NULL || list->compare_function(curr, item) >= 0) {  /* O(1) */
+	if (curr == NULL || list->compare_function(curr->content, item) >= 0) {  /* O(1) */
 		node->next = curr;
 		if (curr != NULL) {
 			curr->prev = node;
@@ -83,7 +83,7 @@ void AddItemSorted(LList list, void* item) {
 	}
 
 	/* O(N-1) => O(N) */
-	while(curr->next != NULL && list->compare_function(curr->next, item) < 0) {
+	while (curr->next != NULL && list->compare_function(curr->next->content, item) < 0) {
 		curr = curr->next;
 	}
 
@@ -97,14 +97,15 @@ void AddItemSorted(LList list, void* item) {
 void RemoveItem(LList list, void* content) {
 	Node curr = list->head;
 	/* O(N) */
-	while (curr != NULL && list->compare_function(curr, content) != 0) {
+	while (curr != NULL && list->compare_function(curr->content, content) != 0) {
 		curr = curr->next;
 	}
 
 	/* O(1) */
-	if(list->head == curr) {
+	if (list->head == curr) {
 		if (curr != NULL) {
 			list->head = curr->next;
+			list->head->prev = NULL;
 			FreeNode(list->free_function, curr);
 			list->count--;
 		}
@@ -117,13 +118,13 @@ void RemoveItem(LList list, void* content) {
 
 /* TC: O(N) */
 void* PeekAt(LList list, int i) {
-	if(list->count < i) {
+	if (list->count < i) {
 		return NULL;
 	}
 
 	/* O(N) */
 	Node node = list->head;
-	while(i-- != 0) {
+	while (i-- != 0) {
 		node = node->next;
 	}
 
@@ -138,19 +139,35 @@ int Size(LList list) {
 /* TC: O(N) */
 void CallForAll(LList list, ListCall lc) {
 	Node node = list->head;
-	while(node != NULL) {
+	while (node != NULL) {
 		lc(node->content);
 		node = node->next;
 	}
 }
 
 /* TC: O(N) */
+void CallForAllBackwards(LList list, ListCall lc) {
+	Node node = list->head;
+	Node prev = node;
+	while(node != NULL) {
+		prev = node;
+		node = node->next;
+	}
+
+	node = prev;
+	while(node != NULL) {
+		lc(node->content);
+		node = node->prev;
+	}
+}
+
+/* TC: O(N) */
 void* CallForAt(LList list, ListCall lc, int i) {
-	if(list->count <= i) {
+	if (list->count <= i) {
 		return NULL;
 	}
 	Node n = list->head;
-	while(i-- != 0) {
+	while (i-- != 0) {
 		n = n->next;
 	}
 
@@ -160,8 +177,8 @@ void* CallForAt(LList list, ListCall lc, int i) {
 /* TC: O(N) */
 int ElementExists(LList list, void* ctx) {
 	Node node = list->head;
-	while(node != NULL) {
-		if(list->compare_function(node->content, ctx)) {
+	while (node != NULL) {
+		if (list->compare_function(node->content, ctx)) {
 			return 1;
 		}
 
