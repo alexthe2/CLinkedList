@@ -170,3 +170,16 @@ int ElementExists(LList list, void* ctx) {
 
 	return 0;
 }
+
+void* GetElement(LList list, void* compare) {
+	Node node = list->head;
+	while (node != NULL) {
+		if (list->compare_function(node->content, compare)) {
+			return node->content;
+		}
+
+		node = node->next;
+	}
+
+	return NULL;
+}

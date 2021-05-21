@@ -107,6 +107,14 @@ void* CallForAt(LList list, ListCall lc, int i);
 /// <param name="ctx">The element to check</param>
 /// <returns>1 if exists, 0 if doesn't exist</returns>
 int ElementExists(LList list, void* ctx);
+
+/// <summary>
+/// Get the Element for which the compare function shows a match<b>TC: O(N)</b>
+/// </summary>
+/// <param name="list">The list</param>
+/// <param name="compare">The comparator</param>
+/// <returns>The element if it exists, or NULL if not</returns>
+void* GetElement(LList list, void* compare);
 #pragma endregion 
 
 #endif // LLIST_H_
