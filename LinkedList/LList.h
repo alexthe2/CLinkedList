@@ -40,34 +40,34 @@ struct ListNode {
 /// <param name="compare">The compare function which should be used to compare two elements</param>
 /// <param name="fc">The free function for the content which should be called for the cleanup</param>
 /// <returns></returns>
-LList CreateList(Compare compare, FreeContent fc);
+LList LL_CreateList(Compare compare, FreeContent fc);
 
 /// <summary>
 /// Destroy the list and frees all it's nodes. <b>TC: O(N)</b>
 /// </summary>
 /// <param name="list">The list</param>
-void DestroyList(LList list);
+void LL_DestroyList(LList list);
 
 /// <summary>
 /// Add an item to the beginning of the list. <b>TC: O(1)</b>
 /// </summary>
 /// <param name="list">The list</param>
 /// <param name="item">The item to be added</param>
-void AddItem(LList list, void* item);
+void LL_AddItem(LList list, void* item);
 
 /// <summary>
 /// Add an item to the list which is sorted. <b>TC: O(N)</b>
 /// </summary>
 /// <param name="list">The list</param>
 /// <param name="item">The item to be added</param>
-void AddItemSorted(LList list, void* item);
+void LL_AddItemSorted(LList list, void* item);
 
 /// <summary>
 /// Remove the first occurrence with the given content. <b>TC: O(N)</b>
 /// </summary>
 /// <param name="list">The list</param>
 /// <param name="item">The content to be removed</param>
-void RemoveItem(LList list, void* content);
+void LL_RemoveItem(LList list, void* content);
 
 /// <summary>
 /// Get the element at i. <b>TC: O(N)</b>
@@ -75,28 +75,28 @@ void RemoveItem(LList list, void* content);
 /// <param name="list">The list</param>
 /// <param name="i">The position</param>
 /// <returns>The content, or NULL if out of range</returns>
-void* PeekAt(LList list, int i);
+void* LL_PeekAt(LList list, int i);
 
 /// <summary>
 /// Get the size of the list. This function only works if inserting/removing has been called via the given functions. <b>TC: O(1)</b>
 /// </summary>
 /// <param name="list">The list</param>
 /// <returns></returns>
-int Size(LList list);
+int LL_Size(LList list);
 
 /// <summary>
 /// Call a function foreach element. <b>TC: O(N)</b>
 /// </summary>
 /// <param name="list">The list</param>
 /// <param name="lc">The function to be called</param>
-void CallForAll(LList list, ListCall lc);
+void LL_CallForAll(LList list, ListCall lc);
 
 /// <summary>
 /// Call a function foreach element. <b>TC: O(N)</b>
 /// </summary>
 /// <param name="list">The list</param>
 /// <param name="lc">The function to be called</param>
-void CallForAllBackwards(LList list, ListCall lc);
+void LL_CallForAllBackwards(LList list, ListCall lc);
 
 /// <summary>
 /// Call a function for the element at i and return the result.<b>TC: O(N)</b>
@@ -105,7 +105,7 @@ void CallForAllBackwards(LList list, ListCall lc);
 /// <param name="lc">The function to be called</param>
 /// <param name="i">The position</param>
 /// <returns>The return of the function, or NULL if out of range</returns>
-void* CallForAt(LList list, ListCall lc, int i);
+void* LL_CallForAt(LList list, ListCall lc, int i);
 
 /// <summary>
 /// Check whether the element is in the list.<b>TC: O(N)</b>
@@ -113,7 +113,7 @@ void* CallForAt(LList list, ListCall lc, int i);
 /// <param name="list">The list</param>
 /// <param name="ctx">The element to check</param>
 /// <returns>1 if exists, 0 if doesn't exist</returns>
-int ElementExists(LList list, void* ctx);
+int LL_ElementExists(LList list, void* ctx);
 
 /// <summary>
 /// Get the Element for which the compare function shows a match<b>TC: O(N)</b>
@@ -121,7 +121,7 @@ int ElementExists(LList list, void* ctx);
 /// <param name="list">The list</param>
 /// <param name="compare">The comparator</param>
 /// <returns>The element if it exists, or NULL if not</returns>
-void* GetElement(LList list, void* compare);
+void* LL_GetElement(LList list, void* compare);
 #pragma endregion 
 
 #endif // LLIST_H_

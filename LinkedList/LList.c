@@ -38,7 +38,7 @@ void RemoveElement(FreeContent free_ctx, Node node) {
 
 /* ------------------ Public (accessible from outside) ------------------ */
 /* TC: O(1) */
-LList CreateList(Compare compare, FreeContent fc) {
+LList LL_CreateList(Compare compare, FreeContent fc) {
 	LList list = (LList)SAFEMALLOC(sizeof(struct List));
 
 	list->compare_function = compare;
@@ -49,7 +49,7 @@ LList CreateList(Compare compare, FreeContent fc) {
 }
 
 /* TC O(N) */
-void DestroyList(LList list) {
+void LL_DestroyList(LList list) {
 	Node curr = list->head;
 	while (curr != NULL) {
 		const Node next = curr->next;
@@ -60,7 +60,7 @@ void DestroyList(LList list) {
 }
 
 /* TC: O(1) */
-void AddItem(LList list, void* item) {
+void LL_AddItem(LList list, void* item) {
 	const Node node = CreateNode(item);
 	list->count++;
 
@@ -68,7 +68,7 @@ void AddItem(LList list, void* item) {
 }
 
 /* TC: O(N) */
-void AddItemSorted(LList list, void* item) {
+void LL_AddItemSorted(LList list, void* item) {
 	Node node = CreateNode(item); /* O(1) */
 	list->count++;
 
@@ -94,7 +94,7 @@ void AddItemSorted(LList list, void* item) {
 }
 
 /* TC: O(N) */
-void RemoveItem(LList list, void* content) {
+void LL_RemoveItem(LList list, void* content) {
 	Node curr = list->head;
 	/* O(N) */
 	while (curr != NULL && list->compare_function(curr->content, content) != 0) {
@@ -117,7 +117,7 @@ void RemoveItem(LList list, void* content) {
 }
 
 /* TC: O(N) */
-void* PeekAt(LList list, int i) {
+void* LL_PeekAt(LList list, int i) {
 	if (list->count < i) {
 		return NULL;
 	}
@@ -132,12 +132,12 @@ void* PeekAt(LList list, int i) {
 }
 
 /* TC: O(1) */
-int Size(LList list) {
+int LL_Size(LList list) {
 	return list->count;
 }
 
 /* TC: O(N) */
-void CallForAll(LList list, ListCall lc) {
+void LL_CallForAll(LList list, ListCall lc) {
 	Node node = list->head;
 	while (node != NULL) {
 		lc(node->content);
@@ -146,7 +146,7 @@ void CallForAll(LList list, ListCall lc) {
 }
 
 /* TC: O(N) */
-void CallForAllBackwards(LList list, ListCall lc) {
+void LL_CallForAllBackwards(LList list, ListCall lc) {
 	Node node = list->head;
 	Node prev = node;
 	while(node != NULL) {
@@ -162,7 +162,7 @@ void CallForAllBackwards(LList list, ListCall lc) {
 }
 
 /* TC: O(N) */
-void* CallForAt(LList list, ListCall lc, int i) {
+void* LL_CallForAt(LList list, ListCall lc, int i) {
 	if (list->count <= i) {
 		return NULL;
 	}
@@ -175,20 +175,12 @@ void* CallForAt(LList list, ListCall lc, int i) {
 }
 
 /* TC: O(N) */
-int ElementExists(LList list, void* ctx) {
-	Node node = list->head;
-	while (node != NULL) {
-		if (list->compare_function(node->content, ctx)) {
-			return 1;
-		}
-
-		node = node->next;
-	}
-
-	return 0;
+int LL_ElementExists(LList list, void* ctx) {
+	return LL_GetElement(list, ctx) != NULL;
 }
 
-void* GetElement(LList list, void* compare) {
+/* TC: O(N) */
+void* LL_GetElement(LList list, void* compare) {
 	Node node = list->head;
 	while (node != NULL) {
 		if (list->compare_function(node->content, compare)) {
