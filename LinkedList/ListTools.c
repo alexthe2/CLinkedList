@@ -50,5 +50,5 @@ int CompareFunctionFloat(void* a, void* b) {
 }
 
 int CompareFunctionString(void* a, void* b) {
-	return strcmp((*(char**)a), (*(char**)b));
+	return strcmp(((char*)a), ((char*)b));
 }

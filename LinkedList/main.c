@@ -1,6 +1,10 @@
+#define MEMORY_TEST 0
+
 #ifdef _MSC_VER
 #pragma warning(disable:4996)
+#if MEMORY_TEST
 #include "vld.h"
+#endif
 #endif
 
 #include "ListTools.h"
