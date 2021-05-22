@@ -183,7 +183,7 @@ int LL_ElementExists(LList list, void* ctx) {
 void* LL_GetElement(LList list, void* compare) {
 	Node node = list->head;
 	while (node != NULL) {
-		if (list->compare_function(node->content, compare)) {
+		if (list->compare_function(node->content, compare) == 0) {
 			return node->content;
 		}
 
